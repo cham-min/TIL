@@ -5,6 +5,7 @@
   - [useCallback 목적](#usecallback-목적)
 - [useMemo](#usememo)
   - [useMemo 목적](#usememo-목적)
+  - [useMemo 예시](#usememo-예시)
 - [Ref](#ref)
 
 <br>
@@ -48,11 +49,33 @@ const memoizedValue = useMemo(() =>
 
 <br>
 
-### useMemo 목적
+### `useMemo` 목적
 
 컴포넌트 리렌더링이 일어났을 때, 값이 바뀌지 않는 경우에는 함수를 호출할 필요가 없다. 예를 들어서 덧셈을 계산하는 함수가 있을 때, `x + y`를 반환한다고 해보자. 여기서 `x`와 `y`의 값이 바뀌지 않는다면, 렌더링 할때마다 계산을 한다면 낭비이다.
 
 `useMemo` 훅은 위와 같은 작업을 최적화할 수 있고, 렌더링 과정에서 특정 값이 바뀌었을 때만 연산을 실행하고, 바뀌지 않았다면 이전에 연산했던 결과를 다시 사용한다.
+
+<br>
+
+### `useMemo` 예시
+
+<br>
+
+#### 1. 태그에 스타일 객체를 넣지 말자.
+
+리렌더링 될 때마다 컴포넌트 함수 전체가 실행되는데, 객체끼리 비교(`{} === {}`)하면 결과는 `false`이다.
+
+```javascript
+<div style={{ margin: 10 }}></div>
+```
+
+React는 Virtual DOM으로 어느 부분이 달라졌는지 탐색하다가 실제로는 객체의 값 `margin: 10`이 바뀌지 않았지만, 객체가 다르다고 인지하여 리렌더링 된다. 이러한 문제를 해결하기 위해서 이미 스타일이 적용된 styled-component 혹은 `useMemo`를 이용한다.
+
+```javascript
+const memoStyle = useMemo(() => ({ marginTop: 10 }), []);
+...
+<div style={{ memoStyle }}></div>
+```
 
 <br>
 

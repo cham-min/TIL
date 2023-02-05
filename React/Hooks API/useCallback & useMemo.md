@@ -6,6 +6,7 @@
 - [useMemo](#usememo)
   - [useMemo 목적](#usememo-목적)
   - [useMemo 예시](#usememo-예시)
+- [Conclusion](#conclusion)
 - [Ref](#ref)
 
 <br>
@@ -58,8 +59,6 @@ const memoizedValue = useMemo(() =>
 <br>
 
 ### `useMemo` 예시
-
-<br>
 
 #### 1. 태그에 스타일 객체를 넣지 말자.
 

@@ -98,7 +98,8 @@ npm install next-redux-wrapper react-redux --save
 
   - store를 \_app.js로 가져와서 `wrapper.withRedux()` HOC로 감싼다.
   - next-redux-wrapper 6버전 이후로 자동으로 `<Provider>`로 감싸기 때문에 해당 부분은 생략한다.
-  - `pages/_app`에서 모든 페이지를 한 번에 감싸는 것을 권장한다. 그렇지 않으면 잠재적인 Race Condition(여러 개의 프로세스가 공유 자원에 동시 접근할 때 실행 순서에 따라 결과값에 영향을 줄 수 있는 상태)으로 인해서 다른 컴포넌트를 렌더링 하는 동안 컴포넌트를 업데이트 할 수 없다.
+  - `pages/_app`에서 모든 페이지를 한 번에 감싸는 것을 권장한다. 그렇지 않으면 잠재적인 Race Condition으로 인해서 다른 컴포넌트를 렌더링 하는 동안 컴포넌트를 업데이트 할 수 없다.
+    - Race Condition : 여러 개의 프로세스가 공유 자원에 동시 접근할 때 실행 순서에 따라 결과값에 영향을 줄 수 있는 상태
 
 <br>
 

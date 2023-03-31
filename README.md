@@ -1,20 +1,26 @@
-# TODAY I LEARNED
+# ✍️ TODAY I LEARNED
 
-- 매일 학습한 내용들을 정리하는 레포지토리 입니다.
+학습한 내용들을 정리하는 레포지토리입니다. 새로 배운 내용을 기록하고, 잊어버린 내용을 복습하는데 목적이 있습니다.
 
-<br>
-
-## 목차
-
-| 번호 | 제목         | 소개                                                      |
-| ---- | ------------ | --------------------------------------------------------- |
-| `1`  | Algorithm    | 알고리즘과 관련된 학습 내용을 기록했습니다.               |
-| `2`  | Frotend      | Frontend와 관련된 학습 내용을 기록했습니다.               |
-| `3`  | Git          | Git과 관련된 학습 내용을 기록했습니다.                    |
-| `4`  | JavaScript   | JavaScript 언어와 관련된 학습 내용을 기록했습니다.        |
-| `5`  | Jest         | Jest 테스팅 프레임워크와 관련된 학습 내용을 기록했습니다. |
-| `6`  | Markdown     | 마크다운 사용 방법을 기록했습니다.                        |
-| `7`  | Next         | Next.js 프레임워크와 관련된 학습 내용을 기록했습니다.     |
-| `8`  | React        | React.js 라이브러리와 관련된 학습 내용을 기록했습니다.    |
-| `9`  | Web          | Web과 관련된 학습 내용을 기록했습니다.                    |
-| `10` | VideoLecture | 인강 학습 내용을 기록했습니다.                            |
+```
+.
+├── 01. CS
+│   ├── Algorithm
+│   ├── Data Structure
+│   ├── Database
+│   ├── Network
+│   └── Operating system
+├── 02. Git
+├── 03. Markup Language
+├── 04. CSS
+├── 05. Language
+│   ├── JavaScript
+│   └── TypeScript
+├── 06. State management
+│   └── Redux
+├── 07. Testing
+│   └── Jest
+├── 08. ReactJS
+├── 09. Next.js
+└── README.md
+```

@@ -3,6 +3,7 @@
 - [TypeScript](#typescript)
 - [TypeScript 설치](#typescript-설치)
 - [TypeScript 컴파일](#typescript-컴파일)
+  - [자동 컴파일](#자동-컴파일)
 - [Ref](#ref)
 
 <br>
@@ -27,6 +28,25 @@ npm install typescript --save-dev
 
 ```shell
 tsc [파일명]
+```
+
+<br>
+
+### 자동 컴파일
+
+- 컴파일 과정에 제외할 파일은 `tsconfig.json`에서 지정한다.
+
+```shell
+# 단일 파일 저장 시 자동 컴파일
+tsc [파일명] --watch # tsc [파일명] -w
+
+# 디렉토리 전체 컴파일
+tsc --init # tsconfig.json 생성
+tsc # 전체 컴파일
+tsc --watch # 저장시 자동으로 전체 컴파일
+
+# 컴파일 제외는 tsconfig.json에서 관리
+"exclude": ["파일명"]
 ```
 
 <br>

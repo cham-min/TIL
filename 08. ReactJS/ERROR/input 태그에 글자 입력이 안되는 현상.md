@@ -1,3 +1,27 @@
+### value 속성만 지정하지는 않았는가?
+
+React에서는 `value` 속성만 지정하면 값이 입력되지 않는 현상이 있다. `value` 속성으로만 값을 제어할 수 있는 권한이 있으며, 사용자에게는 권한이 없어서 값이 입력되지 않는다.
+
+해당 문제는 `onChange` 함수를 사용하여 `input`을 수정할 수 있는 상태로 만들어서 손쉽게 해결이 가능하다.
+
+```javascript
+const [email, setEmail] = useState('');
+
+const onChangeEmail = useCallback((e) => {
+  setEmail(e.target.value);
+}, []);
+
+return (
+  <input
+    value={email}
+    onChange={onChangeEmail}
+    ...
+  />
+);
+```
+
+<br>
+
 ### input 태그에 없는 속성을 사용하지는 않았는가?
 
 ```javascript

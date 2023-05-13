@@ -1,6 +1,15 @@
 # 목차
 
+- [CRA](#cra)
 - [React `src` 구조](#react-src-구조)
+
+<br>
+
+# CRA
+
+```bash
+npx create-react-app [프로젝트명]
+```
 
 <br>
 

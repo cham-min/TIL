@@ -101,7 +101,7 @@ $ npm init @eslint/config
  *
  */
 
-// 사용하려고 만든 코드 => `npm i eslint-config-airbnb eslint-config-prettier` 필요
+// 사용하려고 만든 eslint => `npm i eslint-config-airbnb eslint-config-prettier --save-dev` 필요
 {
   "extends": ["airbnb", "prettier"],
   "rules": {

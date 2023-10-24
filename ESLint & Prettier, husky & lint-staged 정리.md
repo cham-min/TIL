@@ -295,7 +295,7 @@ Husky를 사용하여 commit을 진행하고 `git status`로 확인해보면 mod
 4. prettier로 포맷팅된 파일 존재 - unstaged
 5. 커밋 완료
 
-포맷팅된 파일을 다시 커밋해야되는 문제가 발생하므로 Husky는 lint-staged와 함께 사용한다. lint-staged는 staged 파일에 특정 동작을 수행할 수 있다. 즉, 전체 파일에 대해서 `pre-commit` hook을 수행하는게 아닌 staged된 파일에 `pre-commit`등의 hook을 수행할 수 있게된다.
+포맷팅된 파일을 다시 커밋해야되는 문제가 발생하므로 Husky는 lint-staged와 함께 사용한다. lint-staged는 staged 파일에 특정 동작을 수행할 수 있다. 즉, 전체 파일에 대해서 `pre-commit` hook을 수행하는게 아닌 staged된 파일에 `pre-commit`등의 hook을 수행할 수 있게된다. 또한 모든 코드를 검사하는게 아닌 staged된(변경된) 파일만 검사하기 때문에 검사 시간을 줄일 수 있다.
 
 <br>
 

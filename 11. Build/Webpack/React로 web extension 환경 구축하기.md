@@ -414,7 +414,11 @@ const options = {
     isDevelopment && new ReactRefreshWebpackPlugin(),
     new CleanWebpackPlugin({ verbose: false }),
     new webpack.ProgressPlugin(),
-    new webpack.EnvironmentPlugin(['NODE_ENV']),
+    // new webpack.EnvironmentPlugin(['NODE_ENV']),
+    new webpack.EnvironmentPlugin({
+      // 'NODE_ENV'가 정의되지 않은 경우 'development'를 기본값으로 사용
+      NODE_ENV: 'development',
+    }),
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -574,7 +578,7 @@ Babel은 플러그인 기반으로 동작하며, `presets`는 Babel이 코드를
 
 # 6. `manifest.json` 설정
 
-background, content, popup 등의 개발이 끝나면 빌드를 진행하게 된다. 빌드를 진행(`NODE_ENV=development npm run build`)하면 결과는 다음과 같다.
+background, content, popup 등의 개발이 끝나면 빌드를 진행하게 되는데 결과는 다음과 같다.
 
 ```
 build

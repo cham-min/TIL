@@ -4,6 +4,7 @@
 
 ```
 .
+├── 00. ERRORS
 ├── 01. CS
 │   ├── Algorithm
 │   └── Network

@@ -28,13 +28,24 @@ $ yarn create react-app {project-name}
 
 ```bash
 [eslint] Failed to load config "react-app" to extend from.
-Referenced from: {project-path}/{project-name}/package.json
+Referenced from: {project-path}/package.json
 ```
 
 <br>
 
 # 해결방안
 
+1. [stackoverflow - Failed to load config "react" to extend from](https://stackoverflow.com/questions/63912721/)
+2. [github - yarnpkg issue](github.com/yarnpkg/berry/issues/8#issuecomment-732536482)
+
+"create-react-app doesn't add eslint-config-react-app as a dependency, until it's fixed you need to manually add it. yarn add eslint-config-react-app"
+
 ```bash
 yarn add eslint-config-react-app
 ```
+
+<br>
+
+### 요약
+
+CRA는 `eslint-config-react-app`을 dependency로 추가하지 않는다. 따라서 수동으로 추가해야 한다.

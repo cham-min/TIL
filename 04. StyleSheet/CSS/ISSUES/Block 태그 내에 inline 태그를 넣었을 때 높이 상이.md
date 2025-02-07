@@ -81,7 +81,7 @@ const Example = () => {
 폰트가 아닌 이미지의 경우 `<img />`의 정렬 기준인 `baseline`을 `top`으로 변경하면 여백이 제거됨을 확인할 수 있다.
 
 ```js
-const Test = () => {
+const Example = () => {
   return (
     <div style={{ border: '1px solid black', fontSize: '30px' }}>
       <img src={Check} alt="title" width={77} height={77} style={{ verticalAlign: 'top' }} />
@@ -108,7 +108,7 @@ const Test = () => {
 가장 간단한 방법 중 하나로 `inline` 요소를 레이아웃 흐름을 자체적으로 차지하는 박스 컨테이너인 `block`요소 혹은 `inline-block`으로 변경하여 `baseline`에 영향을 받지 않도록 하면 된다.
 
 ```js
-const Test = () => {
+const Example = () => {
   return (
     <div style={{ border: '1px solid black', fontSize: '30px' }}>
       <span style={{ display: 'inline-block', border: '1px solid black' }}>SPAN TAG CONTENT</span>

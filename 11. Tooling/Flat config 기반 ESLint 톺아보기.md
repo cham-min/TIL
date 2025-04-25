@@ -3,6 +3,7 @@
 - [ESLint 알아보기](#eslint-알아보기)
 - [ESLint 설치하기](#eslint-설치하기)
 - [설정 파일 생성하기](#설정-파일-생성하기)
+- [설정 가져오기](#설정-가져오기)
 
 <br>
 
@@ -26,7 +27,7 @@ $ npm install eslint --save-dev # ESLint 코어 설치
 
 # 설정 파일 생성하기
 
-ESLint 설정 파일 네이밍은 아래 규칙을 따라서 프로젝트의 root에 위치해야 한다. 여러 개의 ESLint 설정 파일이 있는 경우, ESLint는 JavaScript 파일을 TypeScript 파일보다 우선시한다.
+ESLint 설정 파일 네이밍은 아래 규칙을 따라서 프로젝트의 root에 위치해야 한다. 여러 개의 ESLint 설정 파일이 있는 경우, ESLint는 JavaScript 파일을 TypeScript 파일보다 우선시하며 우선순위는 아래와 같다.
 
 1. `eslint.config.js`
 2. `eslint.config.mjs`
@@ -34,6 +35,28 @@ ESLint 설정 파일 네이밍은 아래 규칙을 따라서 프로젝트의 roo
 4. `eslint.config.ts`
 5. `eslint.config.mts`
 6. `eslint.config.cts`
+
+<br>
+
+# 설정 가져오기
+
+대분의 경우 ESLint 설정 파일을 새로 작성하지 않고 기존에 작성된 predefined config(예: `eslint:recommended`), sharable config(예: `eslint-config-airbnb`)를 가져와서 필요한 규칙을 오버라이드하여 설정하는게 일반적이다.
+
+다른 모듈에서 설정 객체를 가져올 때에는 `config` 파일의 배열에 삽입하면 된다. JavaScript 추천 규칙을 사용하려면 아래와 같이 작성하면 된다.
+
+```javascript
+import jseslint from '@eslint/js';
+import { defineConfig } from 'eslint/config';
+
+export default defineConfig([
+  jseslint.configs.recommended,
+  {
+    rules: {
+      'no-console': 'warn',
+    },
+  },
+]);
+```
 
 <br>
 

@@ -4,6 +4,7 @@
 - [ESLint 설치하기](#eslint-설치하기)
 - [설정 파일 생성하기](#설정-파일-생성하기)
 - [설정 가져오기](#설정-가져오기)
+- [Configuration object](#configuration-object)
 
 <br>
 
@@ -57,6 +58,47 @@ export default defineConfig([
   },
 ]);
 ```
+
+<br>
+
+# Configuration object
+
+ESLint 설정 파일은 `defineConfig()` 헬퍼를 사용하여 Configuration object(이하 설정 객체)를 포함하는 설정 배열을 정의한다. 설정 객체는 ESLint가 파일을 실행할 때 필요한 정보를 아래와 같은 속성으로 구성된다.
+
+```javascript
+// eslint.config.js
+
+import { defineConfig } from 'eslint/config';
+
+export default defineConfig({
+  // Configuration object
+  {
+    name: "",
+    files: [],
+    ignores: [],
+    extends: [],
+    languageOptions: {
+      ecmaVersion: 6, // 2022(연도) | 6(버전)
+      sourceType: "", // "module" | "commonjs" | "script"
+      globals: {},
+      parser: "",
+      parserOptions: {},
+    },
+    linterOptions: {
+      noInlineConfig: false, // true | false
+      reportUnusedDisableDirectives: "warn", // "off" | "warn" | "error"
+      reportUnusedInlineConfigs: "off", // "off" | "warn" | "error"
+    },
+    processor: "",
+    plugins: {},
+    rules: {},
+    settings: {},
+  },
+  {}, // 설정 객체 추가 가능
+})
+```
+
+만약 여러 개의 설정 객체를 작성하여 하나의 파일에 동시에 적용될 경우 CSS처럼 cascade되어 나중에 정의된 설정이 우선되어 덮어쓴다.
 
 <br>
 

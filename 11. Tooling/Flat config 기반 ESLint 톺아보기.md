@@ -5,6 +5,7 @@
 - [설정 파일 생성하기](#설정-파일-생성하기)
 - [설정 가져오기](#설정-가져오기)
 - [Configuration object](#configuration-object)
+  - [`name`](#name)
 
 <br>
 
@@ -99,6 +100,12 @@ export default defineConfig({
 ```
 
 만약 여러 개의 설정 객체를 작성하여 하나의 파일에 동시에 적용될 경우 CSS처럼 cascade되어 나중에 정의된 설정이 우선되어 덮어쓴다.
+
+<br>
+
+## `name`
+
+설정 객체의 이름으로 에러 메시지와 config 검사기에서 어떤 설정 객체가 사용되었는지 식별하는데 사용된다.
 
 <br>
 

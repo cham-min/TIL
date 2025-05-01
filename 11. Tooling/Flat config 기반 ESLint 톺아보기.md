@@ -6,6 +6,8 @@
 - [설정 가져오기](#설정-가져오기)
 - [Configuration object](#configuration-object)
   - [`name`](#name)
+  - [`files` & `ignores`](#files--ignores)
+- [Ref](#ref)
 
 <br>
 
@@ -106,6 +108,18 @@ export default defineConfig({
 ## `name`
 
 설정 객체의 이름으로 에러 메시지와 config 검사기에서 어떤 설정 객체가 사용되었는지 식별하는데 사용된다.
+
+<br>
+
+## `files` & `ignores`
+
+설정 객체가 적용되거나 적용되지 않아야 하는 파일을 지정하는 Glob 패턴의 배열이다. 기본적으로 ESLint는 `**/*.js`, `**/*.cjs`, `**/*.mjs` 패턴에 일치하는 파일들을 검사하는데 해당 패턴은 `ignores`에 명시적으로 제외하지 않는 한 항상 검사된다. 기본 확장자 외의 경우는 `**/*.확장자` 패턴을 지정해주어야 한다. 특히 TypeScript를 사용하는 경우 기본 확장자에 해당하지 않기 때문에 `files: ['**/*.ts', '**/*.cts', '**/*.mts']`와 같은 설정을 추가해야 한다.
+
+`files`와 `ignores` 각 속성을 지정하지 않으면 다른 설정 객체에 일치하는 파일 전체에 적용하게 된다. `files`의 경우 다른 설정 객체의 `files` 값이 없다면 기본값인 `.js`, `.cjs`, `.mjs`가 패턴에 일치하게 되어 모든 JavaScript 파일에 적용된다. 만약 특정 디렉터리의 파일만 적용하고 싶다면 `files: ['src/**/*.js']`와 같이 제한할 수 있다.
+
+`files`없이 `ignores`만 사용할 때 다른 속성(예: `rules`)이 있다면, `files: ['**/*']`로 설정한 것과 같아서 ESLint가 검사하는 모든 파일은 적용하고 `ignores`로 제외된 파일만 적용하지 않는다. `ignores`의 기본값은 `['**/node_modules/', '.git/']`으로 사용자가 `ignores` 값을 작성하더라도 기본값 패턴 뒤에 추가된다.
+
+만약 `ignores` 속성이 다른 속성 없이 단독으로 사용될 경우 해당 패턴은 전역 무시(Global ignores)로 작동하여 모든 설정 객체에 적용된다. 이는 각 설정마다 같은 `ignores`를 작성하지 않아도 된다는 장점이 있다. 반면에 다른 속성(예: `rules`, `files` 등)과 같이 정의한 경우 비전역 무시(Non-global ignores)로 작동한다. 이 경우에는 `ignores`를 작성한 해당 설정 객체에만 `ignores`가 적용된다. 비전역 무시는 `dir/filename.js`, `dir/**`과 같이 특정 파일과 디렉터리 내의 모든 파일만 매칭이 가능하며, 전역 무시는 `dir/`과 같이 디렉터리 자체에 매칭할 수 있다는 특징이 있다.
 
 <br>
 

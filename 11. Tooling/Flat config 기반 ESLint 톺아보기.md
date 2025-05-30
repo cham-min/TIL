@@ -121,6 +121,24 @@ export default defineConfig({
 
 만약 `ignores` 속성이 다른 속성 없이 단독으로 사용될 경우 해당 패턴은 전역 무시(Global ignores)로 작동하여 모든 설정 객체에 적용된다. 이는 각 설정마다 같은 `ignores`를 작성하지 않아도 된다는 장점이 있다. 반면에 다른 속성(예: `rules`, `files` 등)과 같이 정의한 경우 비전역 무시(Non-global ignores)로 작동한다. 이 경우에는 `ignores`를 작성한 해당 설정 객체에만 `ignores`가 적용된다. 비전역 무시는 `dir/filename.js`, `dir/**`과 같이 특정 파일과 디렉터리 내의 모든 파일만 매칭이 가능하며, 전역 무시는 `dir/`과 같이 디렉터리 자체에 매칭할 수 있다는 특징이 있다.
 
+```javascript
+// eslint.config.js
+
+import { defineConfig } from "eslint/config";
+
+export default defineConfig([
+  globalIgnores([".config/", "dist/", "tsconfig.json"]), // globalIgnores() 헬퍼 함수로 전역 무시를 명시할 수 있음
+  {
+    ignores: [".config/", "dist/", "tsconfig.json"] // ignores를 제외한 다른 속성이 없기 때문에 전역 무시로 작동
+  },
+  { ... }, // 첫 번째 설정 객체의 ignores를 자동으로 상속받음
+  {
+    ignores: [".config/**", "dir1/script1.js"], // 이 객체 또한 첫 번째 설정 객체의 ignores를 자동으로 상속받음
+    rules: { ... } // 다른 속성이 존재하므로 비전역
+  },
+]);
+```
+
 <br>
 
 # Ref

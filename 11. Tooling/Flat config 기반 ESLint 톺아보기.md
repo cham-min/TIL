@@ -7,6 +7,7 @@
 - [Configuration object](#configuration-object)
   - [`name`](#name)
   - [`files` & `ignores`](#files--ignores)
+  - [`extends`](#extends)
 - [Ref](#ref)
 
 <br>
@@ -135,6 +136,71 @@ export default defineConfig([
   {
     ignores: [".config/**", "dir1/script1.js"], // 이 객체 또한 첫 번째 설정 객체의 ignores를 자동으로 상속받음
     rules: { ... } // 다른 속성이 존재하므로 비전역
+  },
+]);
+```
+
+<br>
+
+## `extends`
+
+설정 객체는 `extends` 속성에 직접 정의한 설정 객체, 설정 객체를 담은 배열, 플러그인에 정의된 설정 이름과 같은 형태의 값을 넣어 다른 설정을 상속할 수 있다. 해당 속성을 통해서 기존 설정을 가져올 수 있으며 추가로 커스터마이징이 가능해진다.
+
+```javascript
+{
+  extends: [
+    "plugin:react/recommended", // 문자열
+    {
+      rules: {
+        semi: "error", // 추가 규칙
+      },
+    }, // 구성 객체
+    [
+      // 구성 배열
+      {
+        rules: {
+          quotes: ["error", "single"],
+        },
+      },
+    ],
+  ],
+}
+```
+
+<br>
+
+플러그인의 설정을 사용하려면 먼저 `plugins` 속성에 지정되어 있어야 한다. ESLint 플러그인은 미리 정의된 설정을 export할 수 있다. 해당 설정은 문자열 형식으로 참조하면 된다.
+
+```javascript
+// eslint.config.js
+// 예시 1
+import examplePlugin from 'eslint-plugin-example';
+import { defineConfig } from 'eslint/config';
+
+export default defineConfig([
+  {
+    files: ['**/*.js'],
+    plugins: {
+      example: examplePlugin, // 플러그인을 먼저 등록
+    },
+    extends: ['example/recommended'], // example 플러그인의 recommended 설정 불러오기
+  },
+]);
+```
+
+```javascript
+// eslint.config.js
+// 예시 2
+import pluginExample from 'eslint-plugin-example';
+import { defineConfig } from 'eslint/config';
+
+export default defineConfig([
+  {
+    files: ['**/*.js'],
+    plugins: {
+      example: pluginExample,
+    },
+    extends: [pluginExample.configs.recommended], // 직접 객체를 넣어줌
   },
 ]);
 ```

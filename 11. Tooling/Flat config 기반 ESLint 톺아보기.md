@@ -207,6 +207,35 @@ export default defineConfig([
 
 <br>
 
+미리 정의된 설정을 사용하는 예시를 살펴보자. ESLint는 `js/recommended`, `js/all` 두 가지 설정을 제공하고 있다. `js/recommended`의 경우는 모든 사람들이 사용하는 걸 권장하는 권고 규칙을 사용하며, `js/all`의 경우는 ESLint의 모든 규칙을 활성화하지만 버전 변경시 매번 설정이 바뀌기 때문에 프로덕션에서 사용하는걸 권장하지 않는 편이다.
+
+```javascript
+// eslint.config.js
+import js from '@eslint/js';
+import { defineConfig } from 'eslint/config';
+
+export default defineConfig([
+  {
+    files: ['**/*.js'],
+
+    // js 플러그인을 등록
+    plugins: {
+      js,
+    },
+
+    // js/recommended 설정을 확장
+    extends: ['js/recommended'],
+
+    // 추가적인 규칙 덮어쓰기
+    rules: {
+      'no-unused-vars': 'warn', // 미사용 변수는 에러가 아닌 경고 처리
+    },
+  },
+]);
+```
+
+<br>
+
 # Ref
 
 - [ESLint docs](https://eslint.org/docs/latest/)

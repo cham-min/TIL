@@ -236,6 +236,85 @@ export default defineConfig([
 
 <br>
 
+공유 가능한 설정 패키지 사용 예시를 살펴보자. 공유 가능한 설정은 `npm` 패키지 형태로 되어있고 하나의 ESLint 설정 객체 또는 배열을 내보내는 구조이다. 이러한 패키지들은 일반적으로 다른 프로젝트에서도 재사용이 되도록 만들어져 있다.
+
+```bash
+$ npm install eslint-config-example --save-dev
+```
+
+`eslint.config.js` 파일에서 해당 패키지를 가져와서 사용이 가능하다.
+
+```javascript
+// eslint.config.js
+
+import exampleConfig from 'eslint-config-example'; // 공유 설정 불러오기
+import { defineConfig } from 'eslint/config';
+
+export default defineConfig([
+  {
+    files: ['**/*.js'], // JS 파일에만 적용
+    extends: [exampleConfig], // 불러온 공유 설정을 적용
+    rules: {
+      'no-unused-vars': 'warn', // 추가로 규칙 커스터마이징도 가능
+    },
+  },
+]);
+```
+
+<br>
+
+설정에는 네이밍 컨벤션이 있다. `name` 속성이 필수는 아니지만, 공유 설정을 만들 때에는 각 설정 객체마다 `name` 지정이 권장된다. 앞서 말했듯이 `name` 속성은 ESLint config inspector가 어떤 설정 객체가 사용되고 있는지를 구분하기 위해서 사용되고 있다. 이름을 지정하면 유지보수나 디버깅이 용이해진다는 장점이 있다. 규칙은 아래와 같다.
+
+- 일반적으로 이름은 설정의 용도를 설명
+- 설정이 속한 공유 설정 패키지 이름 또는 플러그인 이름을 prefix로 붙이고 `/`를 구분자로 사용
+
+```javascript
+// 공유 설정 객체에 `name` 부여
+
+export default {
+  configs: {
+    recommended: {
+      name: 'example/recommended', // 권장 설정
+      rules: {
+        'no-unused-vars': 'warn',
+      },
+    },
+    strict: {
+      name: 'example/strict', // 엄격한 설정
+      rules: {
+        'no-unused-vars': 'error',
+      },
+    },
+  },
+};
+```
+
+```javascript
+// 배열로 구성된 설정 객체에 `name` 부여
+
+export default {
+  configs: {
+    strict: [
+      {
+        name: 'example/strict/language-setup', // 언어 설정 파트
+        languageOptions: {
+          ecmaVersion: 2024,
+        },
+      },
+      {
+        name: 'example/strict/sub-config', // 특정 파일 대상 세부 설정
+        file: ['src/**/*.js'],
+        rules: {
+          'no-unused-vars': 'error',
+        },
+      },
+    ],
+  },
+};
+```
+
+<br>
+
 # Ref
 
 - [ESLint docs](https://eslint.org/docs/latest/)
